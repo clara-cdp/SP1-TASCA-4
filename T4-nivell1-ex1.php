@@ -1,10 +1,11 @@
 <?php
+# *** TASCA 4, NIVELL 1, EXERCICI 1 ***
 /*Crea una classe que representi un empleat, amb atributs referits al seu nom i sou. 
 Defineix un mètode que rebi com a paràmetres el nom i el sou. 
 Planteja un segon mètode que imprimeixi el nom i un missatge que mostri si ha de pagar o no impostos 
 (si el sou en supera 6000, paga impostos).*/
 
-class employee
+class Employee
 {
     public string $name;
     public int $salary;
@@ -36,8 +37,8 @@ class employee
     }
 }
 
-$employee1 = new employee("John", 7000);
+$employee1 = new Employee("John", 7000);
 $employee1->get_salaryTaxes();
 
-$employee2 = new employee("Paul", 4500);
+$employee2 = new Employee("Paul", 4500);
 $employee2->get_salaryTaxes();
