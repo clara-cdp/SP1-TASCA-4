@@ -6,7 +6,11 @@ _Creació i ús de classes i objectes a PHP._
 
 _Ús d’herència i composició com a mecanismes de relació entre classes/objectes._
 
-NIVELL 1 - completat
+## NIVELL 1 - completat
+
+exercici 1 : creació de classes, propietats i mètodes. 
+
+exercici 2 : classes abstractes y subclasses 
 
 ### Tecnologies
 - PHP
