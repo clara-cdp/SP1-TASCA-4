@@ -3,7 +3,7 @@
 /*Escriu un programa que defineixi una classe Shape amb un constructor que rebi com a paràmetres l'ample i alt. 
 Defineix dues subclasses; Triangle i Rectangle que heretin de Shape i que calculin respectivament l'àrea amb un mètode.*/
 
-class shape
+class Shape
 {
     public float $width;
     public float $height;
@@ -18,7 +18,7 @@ class shape
     function calcArea() {}
 }
 
-class triangle extends shape
+class Triangle extends Shape
 {
 
     function calcArea()
@@ -27,7 +27,7 @@ class triangle extends shape
     }
 }
 
-class rectangle extends shape
+class Rectangle extends Shape
 {
     function calcArea()
     {
@@ -35,8 +35,8 @@ class rectangle extends shape
     }
 }
 
-$shape1 = new triangle(5.2, 6);
+$shape1 = new Triangle(5.2, 6);
 echo "The area is: " . $shape1->calcArea() . PHP_EOL;
 
-$shape2 = new rectangle(3, 6.8);
+$shape2 = new Rectangle(3, 6.8);
 echo "The area is: " . $shape2->calcArea() . PHP_EOL;
