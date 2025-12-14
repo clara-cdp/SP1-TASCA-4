@@ -1,17 +1,24 @@
 <?php
 
+enum DieFigure: string
+{
+    case As = 'As';
+    case K  = 'K';
+    case Q = 'Q';
+    case J = 'J';
+    case seven = '7';
+    case eight  = '8';
+}
 class PokerDice
 {
-    const FIGURES = array('As', 'K', 'Q', 'J', '7', '8');
-
-
-    private string $lastRoll = "";
+    private DieFigure $lastRoll;
     private static int $totalThrowCount = 0;
 
-    public function roll()
+    public function roll(): DieFigure
     {
-        $throw = array_rand(self::FIGURES);
-        $figure = self::FIGURES[$throw];
+        $allFigures = DieFigure::cases();
+        $throw = array_rand($allFigures);
+        $figure = $allFigures[$throw];
         $this->lastRoll = $figure;
 
         self::$totalThrowCount++;
@@ -22,7 +29,7 @@ class PokerDice
 
     public function getlastRoll(): string
     {
-        return $this->lastRoll;
+        return $this->lastRoll?->value;
     }
 
     public static function getTotalRolls(): int
