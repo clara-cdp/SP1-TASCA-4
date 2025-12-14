@@ -4,13 +4,6 @@ class PokerDice
 {
     const FIGURES = array('As', 'K', 'Q', 'J', '7', '8');
 
-    /*enum Figures {
-        case 'As';
-        case 'k';
-        case 'Q';
-        case '7';
-        case '8';
-    }*/
 
     private string $lastRoll = "";
     private static int $totalThrowCount = 0;
