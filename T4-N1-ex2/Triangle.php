@@ -5,6 +5,8 @@ class Triangle extends Shape
 
     function calcArea(): float
     {
-        return $area = ($this->width * $this->height) / 2;
+        $area = ($this->width * $this->height) / 2;
+
+        return $area;
     }
 }

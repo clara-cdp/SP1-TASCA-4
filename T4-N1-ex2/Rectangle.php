@@ -4,6 +4,8 @@ class Rectangle extends Shape
 {
     function calcArea(): float
     {
-        return $area = ($this->width * $this->height);
+        $area = ($this->width * $this->height);
+
+        return $area;
     }
 }

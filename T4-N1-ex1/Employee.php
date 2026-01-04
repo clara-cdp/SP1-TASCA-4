@@ -17,7 +17,7 @@ class Employee
         return $this->name;
     }
 
-    private function get_salary()
+    public function get_salary()
     {
         return $this->salary;
     }
