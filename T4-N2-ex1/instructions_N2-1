@@ -1,4 +1,4 @@
-# *** TASCA 4, NIVELL 1, EXERCICI 1 ***
+# *** TASCA 4, NIVELL 2, EXERCICI 1 ***
 
 Crea la classe PokerDice. Les cares d'un dau de pòquer tenen les següents figures: As, K, Q, J, 7 i 8.
  - Ha de tenir un mètode que no faci altra cosa que tirar el dau.
