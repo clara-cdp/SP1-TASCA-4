@@ -17,8 +17,13 @@ exercici 2 : classes abstractes y subclasses
 exercici 1 : Creació i ús de classes i objectes a PHP.
 Ús d’herència i composició com a mecanismes de relació entre classes/objectes.
 
+## NIVELL 2 - completat
+
+exercici 1 : Creació i ús de classes i objectes a PHP, integració amb Front End
 
 ### Tecnologies
 - PHP
+- HTML 
+- CSS
 
 
