@@ -1,79 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-
-</body>
-
-</html>
-
 <?php
 
-/*
-data:
+spl_autoload_register(function ($class_name) {
 
-"The Shining", "Stanley Kubrick", 2:23
+    $file = $class_name . '.php';
 
-"Braindead", "Peter Jackson", 1:44
+    if (file_exists($file)) {
+        require_once $file;
+    }
+});
 
-"The Hills Have Eyes", "Wes Craven", 1:30
 
-"Psycho", "Alfred Hitchcock", 1:49
+$film1 = new Film("The Shining", "Stanley Kubrick", 143);
+$film2 = new Film("Braindead", "Peter Jackson", 104);
+$film3 = new Film("The Hills Have Eyes", "Wes Craven", 90);
 
-"The Exorcist", "William Friedkin", 2:02
+$filmProg1 = [$film1, $film2, $film3];
+$Cinema1 = new Cinema("Odeon Leicester Square", "London", $filmProg1);
 
-"Halloween", "John Carpenter", 1:31
+$film4 = new Film("Psycho", "Alfred Hitchcock", 109);
+$film5 = new Film("The Exorcist", "William Friedkin", 122);
+$film6 = new Film("Halloween", "John Carpenter", 91);
+$film7 = new Film("The Texas Chain Saw Massacre", "Tobe Hooper", 83);
 
-"The Texas Chain Saw Massacre", "Tobe Hooper", 1:23
+$filmProg2 = [$film4, $film5, $film6, $film7];
+$Cinema2 = new Cinema("Ateon Mill Road", "Andover", $filmProg2);
 
-"Alien", "Ridley Scott", 1:57
+$film8 = new Film("Alien", "Ridley Scott", 117);
+$film9 = new Film("The Thing", "John Carpenter", 109);
+$film10 = new Film("Night of the Living Dead", "George A. Romero", 96);
+$film11 = new Film("Dawn of the Dead", "George A. Romero", 127);
+$film12 = new Film("A Nightmare on Elm Street", "Wes Craven", 91);
 
-"The Thing", "John Carpenter", 1:49
+$filmProg3 = [$film8, $film9, $film10, $film11, $film12];
+$Cinema3 = new Cinema("James Stree", "Bath", $filmProg3);
 
-"Night of the Living Dead", "George A. Romero", 1:36
+$fest = new ShadowFest();
+$fest->addCinema($Cinema1);
+$fest->addCinema($Cinema2);
+$fest->addCinema($Cinema3);
 
-"Dawn of the Dead", "George A. Romero", 2:07
+//echo $film1;
+//echo $Cinema1;
+//echo $fest;
 
-"A Nightmare on Elm Street", "Wes Craven", 1:31
+/*------------ data (IA created) --------------------------------
 
-"Evil Dead II", "Sam Raimi", 1:24
+"The Shining", "Stanley Kubrick", 143 "Braindead", "Peter Jackson", 104
 
-"The Evil Dead", "Sam Raimi", 1:25
+"The Hills Have Eyes", "Wes Craven", 90
 
-"Poltergeist", "Tobe Hooper", 1:54
+"Psycho", "Alfred Hitchcock", 109
 
-"Suspiria", "Dario Argento", 1:38
+"The Exorcist", "William Friedkin", 122
 
-"Carrie", "Brian De Palma", 1:38
+"Halloween", "John Carpenter", 91
 
-"Rosemary's Baby", "Roman Polanski", 2:17
+"The Texas Chain Saw Massacre", "Tobe Hooper", 83
 
-"The Omen", "Richard Donner", 1:51
+"Alien", "Ridley Scott", 117
 
-"Nosferatu", "F.W. Murnau", 1:34
+"The Thing", "John Carpenter", 109
 
-"The Fly", "David Cronenberg", 1:36
+"Night of the Living Dead", "George A. Romero", 96
 
-"Hellraiser", "Clive Barker", 1:34
+"Dawn of the Dead", "George A. Romero", 127
 
-"Friday the 13th", "Sean S. Cunningham", 1:35
+"A Nightmare on Elm Street", "Wes Craven", 91
 
-"An American Werewolf in London", "John Landis", 1:37
+"Evil Dead II", "Sam Raimi", 84
 
-"The Birds", "Alfred Hitchcock", 1:59
+"The Evil Dead", "Sam Raimi", 85
 
-"Jaws", "Steven Spielberg", 2:04
+"Poltergeist", "Tobe Hooper", 114
 
-"The Wicker Man", "Robin Hardy", 1:28
+"Suspiria", "Dario Argento", 98
 
-"Re-Animator", "Stuart Gordon", 1:26
+"Carrie", "Brian De Palma", 98
 
-"Child's Play", "Tom Holland", 1:27
+"Rosemary's Baby", "Roman Polanski", 137
 
-"The Beyond", "Lucio Fulci", 1:27 */
+"The Omen", "Richard Donner", 111
+
+"Nosferatu", "F.W. Murnau", 94
+
+"The Fly", "David Cronenberg", 96
+
+"Hellraiser", "Clive Barker", 94
+
+"Friday the 13th", "Sean S. Cunningham", 95
+
+"An American Werewolf in London", "John Landis", 97
+
+"The Birds", "Alfred Hitchcock", 119
+
+"Jaws", "Steven Spielberg", 124
+
+"The Wicker Man", "Robin Hardy", 88
+
+"Re-Animator", "Stuart Gordon", 86
+
+"Child's Play", "Tom Holland", 87
+
+"The Beyond", "Lucio Fulci", 87*/

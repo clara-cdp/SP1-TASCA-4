@@ -24,4 +24,9 @@ class Film
     {
         return $this->runtime;
     }
+
+    public function __toString(): string
+    {
+        return "FILM: " . $this->name . " | DIRECTOR: " . $this->director . " | RUNTIME: " . $this->runtime;
+    }
 }

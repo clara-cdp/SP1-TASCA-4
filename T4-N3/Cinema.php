@@ -1,12 +1,12 @@
 <?php
-
+require_once("Film.php");
 class Cinema
 {
     public string $name;
-    public int $city;
+    public string $city;
     public array $filmProgramme = [];
 
-    public function __construct(string $name, int $city, array $filmProgramme)
+    public function __construct(string $name, string $city, array $filmProgramme = [])
     {
         $this->name = $name;
         $this->city = $city;
@@ -23,7 +23,7 @@ class Cinema
         return $this->city;
     }
 
-    function get_filprograme(): array
+    function get_filmprogramme(): array
     {
         return $this->filmProgramme;
     }
@@ -43,5 +43,20 @@ class Cinema
             }
         }
         return $longestFilm;
+    }
+
+    public function __toString(): string
+    {
+        $fullProgramme = strtoupper($this->name) . ": <br>";
+
+        if (empty($this->filmProgramme)) {
+            $fullProgramme .= "No films scheduled.";
+        } else {
+
+            foreach ($this->filmProgramme as $film) {
+                $fullProgramme .= $film . "<br>";
+            }
+        }
+        return $fullProgramme;
     }
 }
