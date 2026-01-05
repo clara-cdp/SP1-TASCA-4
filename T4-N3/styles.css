@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'MyBenguiat';
+    src: url(/fonts/BENGUIAT.TTF) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.creepster-regular {
+    font-family: "Creepster", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.amarante-regular {
+    font-family: "Amarante", serif;
+
+
+}
+
+body {
+    background-color: #0c0c0c;
+    color: #d4cfcf;
+    font-family: 'Franklin Gothic regular', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+
+    cursor: url('assets/hol335.cur'), auto;
+}
+
+
+h1 {
+    font-family: 'MyBenguiat', "Amarante", serif;
+    color: #c20711;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+h2 {
+    text-transform: uppercase;
+    color: rgb(145, 139, 139);
+    font-weight: lighter;
+}
+
+h3 {
+    text-transform: uppercase;
+    color: #c20711;
+    letter-spacing: 2px;
+}
+
+.gray {
+    text-transform: uppercase;
+    color: rgb(145, 139, 139);
+}
+
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(to bottom, #1a0000, #0c0c0c);
+    border-bottom: 2px solid #e50914;
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.521);
+}
+
+
+.search,
+.search-result {
+    max-width: 800px;
+    width: 80vw;
+    margin: 40px auto;
+    background: #181818;
+    padding: 30px;
+    border-radius: 8px;
+    border: 2px solid #e50914;
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.521);
+    line-height: 1.8;
+}
+
+
+.highlight {
+    color: rgb(145, 139, 139);
+
+}

@@ -23,7 +23,7 @@ class Cinema
         return $this->city;
     }
 
-    function get_filmprogramme(): array
+    public function get_filmProgramme(): array
     {
         return $this->filmProgramme;
     }
@@ -33,7 +33,7 @@ class Cinema
         $this->filmProgramme[] = $film;
     }
 
-    public function findLongestFilm(): Film
+    public function findLongestFilm(): string
     {
         $longestFilm = $this->filmProgramme[0];
 
@@ -47,7 +47,7 @@ class Cinema
 
     public function __toString(): string
     {
-        $fullProgramme = strtoupper($this->name) . ": <br>";
+        $fullProgramme = "<h3>" . $this->name .  " ( " . $this->city . ") : <br></h3>";
 
         if (empty($this->filmProgramme)) {
             $fullProgramme .= "No films scheduled.";
@@ -57,6 +57,7 @@ class Cinema
                 $fullProgramme .= $film . "<br>";
             }
         }
+        $fullProgramme .= "<em class='highlight'>Longest film today: " . $this->findLongestFilm() . "</em>";
         return $fullProgramme;
     }
 }

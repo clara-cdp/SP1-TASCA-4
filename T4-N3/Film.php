@@ -18,7 +18,7 @@ class Film
     }
     function get_director(): string
     {
-        return $this->name;
+        return $this->director;
     }
     function get_runtime(): int
     {
@@ -27,6 +27,6 @@ class Film
 
     public function __toString(): string
     {
-        return "FILM: " . $this->name . " | DIRECTOR: " . $this->director . " | RUNTIME: " . $this->runtime;
+        return "FILM: " . $this->name . " | DIRECTOR: " . $this->director . " | RUNTIME: " . $this->runtime . "min";
     }
 }

@@ -9,13 +9,16 @@ spl_autoload_register(function ($class_name) {
     }
 });
 
+//-------------------------------------------------------------------------
+//         DATA
+//-------------------------------------------------------------------------
 
 $film1 = new Film("The Shining", "Stanley Kubrick", 143);
 $film2 = new Film("Braindead", "Peter Jackson", 104);
 $film3 = new Film("The Hills Have Eyes", "Wes Craven", 90);
 
 $filmProg1 = [$film1, $film2, $film3];
-$Cinema1 = new Cinema("Odeon Leicester Square", "London", $filmProg1);
+$cinema1 = new Cinema("Odeon Leicester Square", "London", $filmProg1);
 
 $film4 = new Film("Psycho", "Alfred Hitchcock", 109);
 $film5 = new Film("The Exorcist", "William Friedkin", 122);
@@ -23,7 +26,7 @@ $film6 = new Film("Halloween", "John Carpenter", 91);
 $film7 = new Film("The Texas Chain Saw Massacre", "Tobe Hooper", 83);
 
 $filmProg2 = [$film4, $film5, $film6, $film7];
-$Cinema2 = new Cinema("Ateon Mill Road", "Andover", $filmProg2);
+$cinema2 = new Cinema("Ateon Mill Road", "Andover", $filmProg2);
 
 $film8 = new Film("Alien", "Ridley Scott", 117);
 $film9 = new Film("The Thing", "John Carpenter", 109);
@@ -32,73 +35,147 @@ $film11 = new Film("Dawn of the Dead", "George A. Romero", 127);
 $film12 = new Film("A Nightmare on Elm Street", "Wes Craven", 91);
 
 $filmProg3 = [$film8, $film9, $film10, $film11, $film12];
-$Cinema3 = new Cinema("James Stree", "Bath", $filmProg3);
+$cinema3 = new Cinema("James Street", "Bath", $filmProg3);
 
 $fest = new ShadowFest();
-$fest->addCinema($Cinema1);
-$fest->addCinema($Cinema2);
-$fest->addCinema($Cinema3);
+$fest->addCinema($cinema1);
+$fest->addCinema($cinema2);
+$fest->addCinema($cinema3);
+
 
 //echo $film1;
 //echo $Cinema1;
 //echo $fest;
 
-/*------------ data (IA created) --------------------------------
+//-------------------------------------------------------------------------
+//         FORM
+//-------------------------------------------------------------------------
 
-"The Shining", "Stanley Kubrick", 143 "Braindead", "Peter Jackson", 104
 
-"The Hills Have Eyes", "Wes Craven", 90
+$showScheduleByVenue = false;
+$showFilmByDirector = false;
 
-"Psycho", "Alfred Hitchcock", 109
+$selectedCinema = $_POST['cinema'] ?? '';
 
-"The Exorcist", "William Friedkin", 122
+if (!empty($selectedCinema)) {
+    $showScheduleByVenue = true;
 
-"Halloween", "John Carpenter", 91
+    $showResult = match ($selectedCinema) {
 
-"The Texas Chain Saw Massacre", "Tobe Hooper", 83
+        'London' =>  $cinema1,
+        'Andover' => $cinema2,
+        'Bath' => $cinema3,
+        'All' =>  $fest,
+        default => null
+    };
+}
 
-"Alien", "Ridley Scott", 117
+$selectedDirector = $_POST['director'] ?? '';
+if (!empty($selectedDirector)) {
+    $showFilmByDirector = true;
+    $showFilms = $fest->findFilmByDirector($selectedDirector);
+}
 
-"The Thing", "John Carpenter", 109
+?>
 
-"Night of the Living Dead", "George A. Romero", 96
+<!DOCTYPE html>
+<html lang="en">
 
-"Dawn of the Dead", "George A. Romero", 127
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amarante&family=Creepster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Shadow Fest</title>
+</head>
 
-"A Nightmare on Elm Street", "Wes Craven", 91
+<body>
+    <header>
+        <h1>WELCOME TO SHADOW FEST 2026</h1>
+        <h2>A Celebration of Cinematic Horror</h2>
+    </header>
 
-"Evil Dead II", "Sam Raimi", 84
 
-"The Evil Dead", "Sam Raimi", 85
+    <main class="festival-container">
 
-"Poltergeist", "Tobe Hooper", 114
+        <section class="search">
+            <h3 class="gray">Choose Your venue:</h3>
+            <form action="Home.php" method="POST">
+                <input type="radio" name="cinema" value="London">
+                <label for="London">Odeon Leicester Square, London</label><br>
 
-"Suspiria", "Dario Argento", 98
+                <input type="radio" name="cinema" value="Andover">
+                <label for="Andover">Ateon Mill Road, Andover</label><br>
 
-"Carrie", "Brian De Palma", 98
+                <input type="radio" name="cinema" value="Bath">
+                <label for="Bath">James street, Bath</label><br>
 
-"Rosemary's Baby", "Roman Polanski", 137
+                <input type="radio" name="cinema" value="All">
+                <label for="All">See All venues</label><br>
 
-"The Omen", "Richard Donner", 111
+                <input type="submit" value="Submit">
+            </form>
 
-"Nosferatu", "F.W. Murnau", 94
+            <form action="Home.php" method="POST">
+                <h3 class="gray">Choose Movie by director:</h3>
+                <input type="text" name="director" placeholder="John Carpenter">
+                <input type="submit" value="Search">
+            </form>
 
-"The Fly", "David Cronenberg", 96
+        </section>
+        <?php if ($showScheduleByVenue && $showResult): ?>
+            <section class="search-result">
+                <?php echo $showResult; ?>
+            </section>
 
-"Hellraiser", "Clive Barker", 94
+        <?php endif; ?>
 
-"Friday the 13th", "Sean S. Cunningham", 95
+        <?php if ($showFilmByDirector && $showFilms): ?>
+            <section class="search-result">
+                <?php echo $showFilms ?>
+            </section>
 
-"An American Werewolf in London", "John Landis", 97
+        <?php endif; ?>
 
-"The Birds", "Alfred Hitchcock", 119
+    </main>
 
-"Jaws", "Steven Spielberg", 124
+</body>
 
-"The Wicker Man", "Robin Hardy", 88
+</html>
 
-"Re-Animator", "Stuart Gordon", 86
 
-"Child's Play", "Tom Holland", 87
+<?php
 
-"The Beyond", "Lucio Fulci", 87*/
+/*---------- data (IA created) -------------------------------- 
+"The Shining" , "Stanley Kubrick" , 143 
+"Braindead" , "Peter Jackson" , 104 
+"The Hills Have Eyes" , "Wes Craven" , 90 "
+Psycho" , "Alfred Hitchcock" , 109 
+"The Exorcist" , "William Friedkin" , 122 
+"Halloween" , "John Carpenter" , 91 
+"The Texas Chain Saw Massacre" , "Tobe Hooper" , 83 
+"Alien" , "Ridley Scott" , 117 
+"The Thing" , "John Carpenter" , 109 
+"Night of the Living Dead" , "George A. Romero" , 96 
+"Dawn of the Dead" , "George A. Romero" , 127 
+"A Nightmare on Elm Street" , "Wes Craven" , 91 
+"Evil Dead II" , "Sam Raimi" , 84 
+"The Evil Dead" , "Sam Raimi" , 85 
+"Poltergeist" , "Tobe Hooper" , 114 
+"Suspiria" , "Dario Argento" , 98 
+"Carrie" , "Brian De Palma" , 98 
+"Rosemary's Baby" , "Roman Polanski" , 137 
+"The Omen" , "Richard Donner" , 111 
+"Nosferatu" , "F.W. Murnau" , 94 
+"The Fly" , "David Cronenberg" , 96 
+"Hellraiser" , "Clive Barker" , 94 
+"Friday the 13th" , "Sean S. Cunningham" , 95 
+"An American Werewolf in London" , "John Landis" , 97 
+"The Birds" , "Alfred Hitchcock" , 119 
+"Jaws" , "Steven Spielberg" , 124 
+"The Wicker Man" , "Robin Hardy" , 88 
+"Re-Animator" , "Stuart Gordon" , 86 
+"Child's Play" , "Tom Holland" , 87 
+"The Beyond" , "Lucio Fulci" , 87*/ ?>

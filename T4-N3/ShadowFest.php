@@ -16,30 +16,32 @@ class ShadowFest
 
     public function findFilmByDirector(string $director)
     {
-        $foundFilm = [];
-        if (empty($this->venues)) {
-            echo "Error: No films scheduled yet";
-        }
+        $searchTerm = trim((string)$director);
+        $foundFilms = [];
 
-        foreach ($this->venues as $v) {
-            foreach ($v->get_filmprogramme as $f) {
-                if ($f->get_director() == $director) {
-                    $foundFilm[] = $f->get_name();
-                } else {
-                    echo "No films matched.";
+        foreach ($this->venues as $cinema) {
+
+            $programme = $cinema->filmProgramme;
+
+            foreach ($programme as $film) {
+                $directorInObject = (string)$film->director;
+
+                if (stripos($directorInObject, $searchTerm) !== false) {
+                    $foundFilms[] = $film . " | " . $cinema->name;
                 }
             }
         }
         if (empty($foundFilms)) {
-            return "No films found directed by: " . $director;
+            return "No films found directed by: " . htmlspecialchars($searchTerm);
         }
 
-        return $foundFilm; // check this line output
+        return implode("<br>", $foundFilms);
     }
+
 
     public function __toString(): string
     {
-        $venueShowtimes = "NOW SHOWING: <br>";
+        $venueShowtimes = "";
 
         if (empty($this->venues)) {
             $venueShowtimes = "--- no films schedule for this venue --- ";
